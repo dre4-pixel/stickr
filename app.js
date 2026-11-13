@@ -1,6 +1,6 @@
 // ===== CONFIG =====
 // Leave empty for demo mode. Set to your backend once it's hosted, e.g. "https://api.yoursite.com"
-const API_BASE = "";
+const API_BASE = "https://stickr-t16a.onrender.com";
 const AD_SECONDS = 5;
 // Stripe Payment Link for Premium (create in your Stripe dashboard, paste here)
 const PREMIUM_LINK = "";
