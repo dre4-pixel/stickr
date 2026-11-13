@@ -107,3 +107,4 @@ header{padding:14px 20px}
 .row{display:flex;flex-wrap:wrap;gap:8px}
 #adslot{background:var(--panel2);border-radius:14px;aspect-ratio:6/5;display:grid;place-items:center;color:var(--muted);font-size:14px}
 #adskip:disabled{opacity:.5;cursor:default}
+.logo span:first-child{background:none;color:var(--text);-webkit-text-fill-color:var(--text)}

@@ -165,10 +165,10 @@ app.get("/api/file", async (req, res) => {
   let item, name;
   if (id.startsWith("c:")) {
     const [, videoId, commentId] = id.split(":");
-    item = single.get(`${videoId}:${commentId}`); name = `stickr-${commentId}`;
+    item = single.get(`${videoId}:${commentId}`); name = `grabstickr-${commentId}`;
   } else {
     const [videoId, idx] = id.split(":");
-    item = cache.get(videoId)?.items?.[Number(idx)]; name = `stickr-${videoId}-${idx}`;
+    item = cache.get(videoId)?.items?.[Number(idx)]; name = `grabstickr-${videoId}-${idx}`;
   }
   if (!item) return res.status(404).end();
   const u = new URL(item.src);
