@@ -49,17 +49,17 @@ function extractMedia(c) {
     const u = img?.origin_url?.url_list?.[0] || img?.crop_url?.url_list?.[0];
     if (u) out.push({ type: "image", src: u });
   }
-  const s = c.sticker || c.sticker_info;
-  const su = s?.animate_url?.url_list?.[0] || s?.static_url?.url_list?.[0] || s?.url?.url_list?.[0];
-  if (su) out.push({ type: s?.animate_url ? "gif" : "sticker", src: su });
+  const s = c.cmt_sticker_struct || c.sticker || c.sticker_info;
+  const anim = s?.animated_url?.high_resolution_url?.url_list?.[0] || s?.animate_url?.url_list?.[0]; const stat = s?.static_url?.high_resolution_url?.url_list?.[0] || s?.static_url?.url_list?.[0];
+  if (anim || stat) out.push({ type: anim ? "gif" : "sticker", src: anim || stat });
   return out;
 }
 
 async function getCommentPage(videoId, cursor) {
   const api = `https://www.tiktok.com/api/comment/list/?aid=1988&aweme_id=${videoId}&count=50&cursor=${cursor}`;
   const r = await fetch(api, { headers: HEADERS });
-  if (!r.ok) { console.log("TT status", r.status); return null; }
-  const t = await r.text(); console.log("TT", r.status, t.length); try { const d = JSON.parse(t); for (const c of d.comments || []) { const { user, ...rest } = c; const s = JSON.stringify(rest); if (s.includes("url_list")) console.log("TTC", c.content_type, Object.keys(rest).join(","), s.slice(0, 2500)); } return d; } catch (e) { return null; }
+  if (!r.ok) return null;
+  return r.json().catch(() => null);
 }
 
 async function getReplies(videoId, commentId) {
@@ -91,7 +91,7 @@ async function fillTo(entry, videoId, need) {
     pages++;
     const data = await getCommentPage(videoId, entry.cursor);
     if (!data?.comments?.length) { entry.hasMore = false; break; }
-    for (const c of data.comments) addMedia(entry, c);
+    for (const c of data.comments) { addMedia(entry, c); for (const rc of c.reply_comment || []) addMedia(entry, rc); }
     entry.hasMore = !!data.has_more;
     entry.cursor = data.cursor;
   }
