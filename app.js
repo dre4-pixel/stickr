@@ -57,8 +57,8 @@ async function go(url, opts = {}) {
 // mode: "comment" = a single shared comment, "video" = every sticker on the video
 async function fetchPage(url, offset, all) {
   if (!API_BASE) return fetchDemo(url, offset, all);
-  const r = await fetch(`${API_BASE}/api/stickers?url=${encodeURIComponent(url)}&offset=${offset}${all ? '&all=1' : ''}`, { credentials: 'include' });
-  if (!r.ok) throw new Error('bad');
+  let r; for (let i = 0; i < 10; i++) { try { r = await fetch(`${API_BASE}/api/stickers?url=${encodeURIComponent(url)}&offset=${offset}${all ? '&all=1' : ''}`); } catch (e) { r = null; } if (r && r.status < 500) break; if (i === 0) { const t = document.querySelector('.msg-bot:last-child .typing'); if (t) t.insertAdjacentHTML('afterend', '<p style="color:var(--muted);font-size:13px;margin-top:6px">Waking up the server, this can take up to a minute…</p>'); } await wait(7000); }
+  if (!r || !r.ok) throw new Error('bad');
   return r.json(); // { mode, items:[{id,type,src}], hasMore, note? }
 }
 
