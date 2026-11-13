@@ -59,7 +59,7 @@ async function getCommentPage(videoId, cursor) {
   const api = `https://www.tiktok.com/api/comment/list/?aid=1988&aweme_id=${videoId}&count=50&cursor=${cursor}`;
   const r = await fetch(api, { headers: HEADERS });
   if (!r.ok) { console.log("TT status", r.status); return null; }
-  const t = await r.text(); console.log("TT", r.status, t.length, t.slice(0, 300)); try { return JSON.parse(t); } catch (e) { return null; }
+  const t = await r.text(); console.log("TT", r.status, t.length); try { const d = JSON.parse(t); for (const c of d.comments || []) { const { user, ...rest } = c; const s = JSON.stringify(rest); if (s.includes("url_list")) console.log("TTC", c.content_type, Object.keys(rest).join(","), s.slice(0, 2500)); } return d; } catch (e) { return null; }
 }
 
 async function getReplies(videoId, commentId) {
