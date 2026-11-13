@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Save TikTok Comment Stickers as PNG | Stickr</title>
+<meta name="description" content="Save TikTok comment stickers as transparent PNGs, ready for edits, thumbnails and memes.">
+<link rel="canonical" href="https://stickr.example/tiktok-sticker-to-png.html">
+<meta property="og:title" content="Save TikTok Comment Stickers as PNG | Stickr">
+<meta property="og:description" content="Save TikTok comment stickers as transparent PNGs, ready for edits, thumbnails and memes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stickr.example/tiktok-sticker-to-png.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the background transparent?", "acceptedAnswer": {"@type": "Answer", "text": "If the original sticker has a transparent background, the PNG keeps it."}}, {"@type": "Question", "name": "Can I use them in CapCut or Canva?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Drag the PNG straight into your editor."}}, {"@type": "Question", "name": "What about animated stickers?", "acceptedAnswer": {"@type": "Answer", "text": "Animated stickers download as GIFs. Use the GIF downloader if you want to keep the movement."}}]}</script>
+</head>
+<body>
+<header>
+  <a class="logo" href="./" style="text-decoration:none;color:inherit">✨ <span>Stickr</span></a>
+  <button class="btn-ghost" onclick="openPricing()">Pricing</button>
+</header>
+<main id="scroller">
+  <div class="wrap" id="hero">
+    <h1>TikTok sticker to PNG</h1>
+    <p>Get comment stickers as transparent PNGs, ready to drop into edits and memes.</p>
+    
+  </div>
+  <div class="wrap" id="chat" style="display:none"></div>
+  <section class="wrap" id="seo">
+    <h2>How it works</h2>
+    <ol><li>Copy the TikTok video link.</li><li>Paste it below and wait a few seconds.</li><li>Download as PNG, keeping the transparent background.</li></ol>
+    <h2>FAQ</h2>
+    <details><summary>Is the background transparent?</summary><p>If the original sticker has a transparent background, the PNG keeps it.</p></details><details><summary>Can I use them in CapCut or Canva?</summary><p>Yes. Drag the PNG straight into your editor.</p></details><details><summary>What about animated stickers?</summary><p>Animated stickers download as GIFs. Use the GIF downloader if you want to keep the movement.</p></details>
+  </section>
+  <footer><div class="wrap"><div class="links"><a href="./">Home</a><a href="tiktok-sticker-downloader.html">TikTok Sticker Downloader</a><a href="tiktok-gif-downloader.html">TikTok GIF Downloader</a><a href="tiktok-stickers-to-whatsapp.html">TikTok Stickers to WhatsApp</a><a href="tiktok-sticker-to-png.html">TikTok Sticker to PNG</a><a href="tiktok-comment-gif-viewer.html">TikTok Comment GIF Viewer</a><a href="index.html#pricing">Pricing</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div>
+<div>© 2026 Stickr. Not affiliated with TikTok.</div></div></footer>
+</main>
+<div class="composer">
+  <div class="wrap">
+    <form class="box" id="form">
+      <input id="url" type="url" inputmode="url" autocomplete="off" placeholder="Paste a TikTok link…">
+      <button class="send" id="send" disabled aria-label="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </form>
+    <div class="fine">Only download content you have the right to use.</div>
+  </div>
+</div>
+<div class="overlay" id="pricing" onclick="if(event.target===this)closePricing()">
+  <div class="modal">
+    <button class="x" onclick="closePricing()">×</button>
+    <h2>Stickr Premium</h2>
+    <div class="sub">Everything's free. Premium just makes it faster.</div>
+    <div class="plan sel">
+      <div><b>No ads, ever</b><small>Instant downloads · Cancel anytime</small></div>
+      <div class="p">£3.99<small style="display:inline">/mo</small></div>
+    </div>
+    <button class="btn btn-white" style="width:100%;margin-top:6px" onclick="checkout()">Go Premium</button>
+  </div>
+</div>
+<div class="overlay" id="ad">
+  <div class="modal" style="text-align:center">
+    <div class="sub" style="margin-bottom:10px">Ad · <span id="adcount">5</span></div>
+    <div id="adslot">Your ad here</div>
+    <button class="btn btn-white" id="adskip" style="width:100%;margin-top:12px" disabled>Download in 5s</button>
+    <button class="btn" style="background:none;color:var(--muted);margin-top:6px" onclick="document.getElementById('ad').classList.remove('show');openPricing()">Skip ads forever – £3.99/mo</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
